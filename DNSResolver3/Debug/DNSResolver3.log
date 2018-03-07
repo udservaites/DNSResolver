@@ -1,0 +1,7 @@
+﻿  winsock.cpp
+  main.cpp
+  lookup.cpp
+  dns.cpp
+  cpu.cpp
+  Generating Code...
+  DNSResolver3.vcxproj -> C:\CIS\CPS 570\DNSResolver\DNSResolver3\Debug\DNSResolver3.exe
