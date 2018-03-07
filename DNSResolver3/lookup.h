@@ -84,11 +84,13 @@ public:
 
 class Question {
 public:
+	QueryHeader qhead;
 
-	Question(void);			// constructor
 
+	int parseLine(string line);
+	void analyzeQueryType(string token);
 	bool MakePacket();	// need to add parameters
 
 
-
+	//Question(void);			// constructor
 };

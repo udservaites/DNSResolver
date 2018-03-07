@@ -8,5 +8,5 @@ CPS 472 Sample Code
 class DNS {
 public:
 	void printDNSServer(string & dnsIP);
-	int parseLine(string line);
+	
 };

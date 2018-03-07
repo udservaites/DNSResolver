@@ -9,15 +9,18 @@ Define a class that handles socket APIs
 #include <stdio.h>
 #include <winsock2.h>
 #include <time.h>
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#include "headers.h"
 
 class Winsock {
 
 private:
-	
+	char* recvBuffer;
+	int recvBufferSize;
+	int totalBytesRecv;
 
 public:
 	SOCKET	OpenSocket(void);
 	bool send_to(SOCKET sock, char* send_buf, int count, const char* address, const char* port);
+	bool recvFrom(SOCKET sock);
 
 };

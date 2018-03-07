@@ -50,3 +50,37 @@ bool Winsock::send_to(SOCKET sock, char* send_buf, int count, const char* host_a
 	return true;
 }
 
+bool Winsock::recvFrom(SOCKET sock) {
+	SOCKADDR_IN send_addr;
+	recvBuffer = new char[1024];
+	recvBufferSize = 1024;
+
+	totalBytesRecv = 0;
+	memset(recvBuffer, 0, recvBufferSize);
+	int recv_count = 0;
+	fd_set fd;
+	FD_ZERO(&fd);
+	FD_SET(sock, &fd);
+	int ret;
+	timeval timeout;
+	timeout.tv_sec = 30;
+	timeout.tv_usec = 0;
+	int count = 0;
+
+	ret = select(0, &fd, NULL, NULL, &timeout);
+	if (ret > 0)
+	{
+		int send_addrSize = sizeof(SOCKADDR);
+		recvfrom(sock, recvBuffer, (recvBufferSize - totalBytesRecv), 0, (SOCKADDR*)&send_addr, &send_addrSize);
+		//recvbytes = recvfrom(sock, recv_buf, 512, 0, (sockaddr *)&send_addr, &send_addrSize);
+		//printf("Stuff in the buffer: %s", recvBuffer);
+		return true;
+	}
+	else if (ret == SOCKET_ERROR)
+	{
+		printf("Fail to select = %d.\n", WSAGetLastError());
+		return false;
+	}
+
+	return false;
+}

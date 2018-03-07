@@ -156,7 +156,10 @@ int main(void)
 	const char* host_name = dnsIP.c_str();
 
 	bool didIt = ws.send_to(sock, pkt, pkt_size, host_name, port);
-	cout << "Did it? " << didIt << endl;
+	cout << "Did it send? " << didIt << endl;
+
+	bool getIt = ws.recvFrom(sock);
+	cout << "Did it come through?" << getIt << endl;
 
 	int send_addrSize = sizeof(struct sockaddr_in);
 
